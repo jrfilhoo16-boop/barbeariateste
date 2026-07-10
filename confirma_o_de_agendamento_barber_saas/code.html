@@ -1,0 +1,272 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-card {
+            background: rgba(26, 26, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 45, 46, 1);
+        }
+        .inner-glow {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+        }
+        .gold-glow:focus {
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        .sidebar-active-indicator {
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 24px;
+            background-color: #f2ca50;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed": "#241a00",
+                      "surface-container-highest": "#323536",
+                      "surface-bright": "#373a3b",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "on-primary": "#3c2f00",
+                      "primary-fixed": "#ffe088",
+                      "surface": "#111415",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#303031",
+                      "on-secondary-fixed": "#1b1b1c",
+                      "surface-variant": "#323536",
+                      "inverse-primary": "#735c00",
+                      "tertiary": "#cecece",
+                      "surface-container": "#1d2021",
+                      "primary-container": "#d4af37",
+                      "on-background": "#e1e3e4",
+                      "inverse-surface": "#e1e3e4",
+                      "error-container": "#93000a",
+                      "primary": "#f2ca50",
+                      "surface-container-lowest": "#0c0f10",
+                      "secondary-fixed": "#e5e2e3",
+                      "surface-tint": "#e9c349",
+                      "on-error": "#690005",
+                      "inverse-on-surface": "#2e3132",
+                      "surface-dim": "#111415",
+                      "tertiary-container": "#b3b3b3",
+                      "primary-fixed-dim": "#e9c349",
+                      "surface-container-high": "#282a2b",
+                      "background": "#111415",
+                      "outline": "#99907c",
+                      "on-secondary-fixed-variant": "#474647",
+                      "on-tertiary-container": "#454545",
+                      "on-primary-container": "#554300",
+                      "on-surface": "#e1e3e4",
+                      "on-surface-variant": "#d0c5af",
+                      "on-primary-fixed-variant": "#574500",
+                      "on-tertiary": "#303030",
+                      "secondary-fixed-dim": "#c8c6c7",
+                      "tertiary-fixed": "#e2e2e2",
+                      "on-secondary-container": "#bab8b9",
+                      "outline-variant": "#4d4635",
+                      "surface-container-low": "#191c1d",
+                      "secondary-container": "#49494a",
+                      "error": "#ffb4ab",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "secondary": "#c8c6c7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "margin-desktop": "40px",
+                      "sidebar-width": "280px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Geist"],
+                      "body-md": ["Poppins"],
+                      "display-lg": ["Poppins"],
+                      "body-lg": ["Poppins"],
+                      "label-md": ["Geist"],
+                      "headline-md": ["Poppins"],
+                      "headline-lg": ["Poppins"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30">
+<!-- Top Navigation (Shell suppressed for transaction focus, using simple brand anchor) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">BarberPro</div>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Precisa de ajuda?</button>
+</div>
+</div>
+</header>
+<main class="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Ambient Effect -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="w-full max-w-2xl z-10">
+<!-- Success Animation Placeholder -->
+<div class="flex justify-center mb-8">
+<div class="w-24 h-24 relative">
+
+</div>
+</div>
+<div class="text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Quase lá!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Confirme os detalhes do seu agendamento premium abaixo.</p>
+</div>
+<!-- Confirmation Card -->
+<div class="glass-card inner-glow rounded-xl overflow-hidden shadow-2xl transition-all duration-500 hover:border-outline-variant/30">
+<!-- Card Header -->
+<div class="px-8 py-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-high/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary">Resumo do Agendamento</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Ref: #BP-88291</div>
+</div>
+<!-- Card Content -->
+<div class="p-8 space-y-8">
+<!-- Client & Service Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Client Info -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">CLIENTE</label>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center text-primary font-bold">GA</div>
+<span class="font-headline-md text-headline-md text-on-surface">Gabriel Antunes</span>
+</div>
+</div>
+<!-- Barber Info -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">BARBEIRO</label>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional, high-end portrait of a male barber with a well-groomed beard and stylish hair, wearing a clean black apron in a luxury barbershop setting. The background is a sophisticated dark graphite with warm gold accents. The lighting is moody and cinematic, emphasizing a premium grooming service environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPPLNjQi3fgMZaB3ddDUP25CGOY6kPszAiIgLmRdWSnjV8zneefTQjhSWoliDs7-K00_2Vmrtr8umy4RjoSfmIutIuOtncXKd86JKfMH1sZdcgwjnaLEBQW-0b2D4rz1Zalmj9GhkmJmiz1VKRRolbP8y9WH7xaUXzp6R7Ri8EkF-A5oq9UWGz8ylD1OaPx9DNtGoNqfWmMzUVKlK8i87qr6Gg75Gh-4E5b3oa-1mrOqXjorkZQmiA">
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">Ricardo Silva</span>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-outline-variant/10"></div>
+<!-- Details Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Service -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">SERVIÇO</label>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">content_cut</span>
+<span class="font-body-lg text-body-lg text-on-surface">Corte &amp; Barba Premium</span>
+</div>
+</div>
+<!-- Date/Time -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">DATA E HORA</label>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">calendar_today</span>
+<span class="font-body-lg text-body-lg text-on-surface">24 Mai, 14:30</span>
+</div>
+</div>
+<!-- Price -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">INVESTIMENTO</label>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">payments</span>
+<span class="font-body-lg text-body-lg text-primary font-bold">R$ 145,00</span>
+</div>
+</div>
+</div>
+<!-- Note Area -->
+<div class="p-4 bg-surface-container-lowest border border-outline-variant/10 rounded-lg">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="font-label-md text-label-md text-on-surface-variant">Política de cancelamento: Cancelamentos feitos com menos de 2h de antecedência podem estar sujeitos a taxas.</p>
+</div>
+</div>
+</div>
+<!-- Card Footer Actions -->
+<div class="p-8 bg-surface-container-high/20 border-t border-outline-variant/10 flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="flex flex-col md:flex-row gap-4 w-full md:w-auto order-2 md:order-1">
+<button class="px-8 py-3 rounded-lg border border-outline-variant text-on-surface font-label-md transition-all hover:bg-surface-container-highest active:scale-95">
+                            Editar Agendamento
+                        </button>
+<button class="px-8 py-3 rounded-lg text-error/60 hover:text-error hover:bg-error/5 font-label-md transition-all active:scale-95">
+                            Cancelar
+                        </button>
+</div>
+<button class="w-full md:w-auto px-12 py-3 rounded-lg bg-primary text-on-primary-fixed font-bold font-label-md shadow-lg shadow-primary/10 transition-all hover:opacity-90 active:scale-95 order-1 md:order-2 inner-glow">
+                        Confirmar Agora
+                    </button>
+</div>
+</div>
+<!-- Security Footer -->
+<div class="mt-12 flex items-center justify-center gap-8 text-on-surface-variant/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span class="font-label-sm text-label-sm">Pagamento Seguro</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm">Certificado SSL</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer (Shared Component Guidance) -->
+<footer class="w-full border-t border-outline-variant/10 bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-primary mb-4">BarberPro</div>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">Gestão premium para barbearias de luxo.</p>
+</div>
+<div class="col-span-1"></div>
+<div class="col-span-1"></div>
+<div class="col-span-1 flex flex-col items-end gap-2">
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">© 2024 BarberPro SaaS. Todos os direitos reservados.</p>
+<div class="flex gap-4">
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary" href="#">Privacidade</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary" href="#">Termos</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>

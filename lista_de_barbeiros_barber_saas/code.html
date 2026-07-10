@@ -1,0 +1,459 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BarberPro - Nossos Barbeiros</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-highest": "#323536",
+                    "surface-bright": "#373a3b",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#111415",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#303031",
+                    "on-secondary-fixed": "#1b1b1c",
+                    "surface-variant": "#323536",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#cecece",
+                    "surface-container": "#1d2021",
+                    "primary-container": "#d4af37",
+                    "on-background": "#e1e3e4",
+                    "inverse-surface": "#e1e3e4",
+                    "error-container": "#93000a",
+                    "primary": "#f2ca50",
+                    "surface-container-lowest": "#0c0f10",
+                    "secondary-fixed": "#e5e2e3",
+                    "surface-tint": "#e9c349",
+                    "on-error": "#690005",
+                    "inverse-on-surface": "#2e3132",
+                    "surface-dim": "#111415",
+                    "tertiary-container": "#b3b3b3",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-container-high": "#282a2b",
+                    "background": "#111415",
+                    "outline": "#99907c",
+                    "on-secondary-fixed-variant": "#474647",
+                    "on-tertiary-container": "#454545",
+                    "on-primary-container": "#554300",
+                    "on-surface": "#e1e3e4",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-tertiary": "#303030",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#bab8b9",
+                    "outline-variant": "#4d4635",
+                    "surface-container-low": "#191c1d",
+                    "secondary-container": "#49494a",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "secondary": "#c8c6c7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "sidebar-width": "280px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Geist"],
+                    "body-md": ["Poppins"],
+                    "display-lg": ["Poppins"],
+                    "body-lg": ["Poppins"],
+                    "label-md": ["Geist"],
+                    "headline-md": ["Poppins"],
+                    "headline-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e1e3e4;
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-card {
+            background: rgba(26, 26, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 45, 46, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .inner-glow {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-gold-bar {
+            position: relative;
+        }
+        .active-gold-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background-color: #f2ca50;
+        }
+    </style>
+</head>
+<body class="bg-black">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">BarberPro</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Serviços</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Barbeiros</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Unidades</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Preços</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md text-on-surface-variant hover:opacity-80 transition-all">Entrar</button>
+<button class="bg-primary text-on-primary-fixed font-label-md text-label-md px-6 py-2.5 rounded-lg font-bold hover:opacity-90 active:scale-95 transition-all">Agendar Agora</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-margin-desktop max-w-container-max mx-auto">
+<!-- Header & Filters Section -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<h1 class="font-headline-lg text-headline-lg text-white mb-2">Conheça nossos Especialistas</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Selecione o profissional que melhor combina com seu estilo e agende seu horário com facilidade.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-[#121213] border border-outline-variant/30 rounded-lg pl-12 pr-4 py-3 text-on-surface w-full md:w-64 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none font-label-md text-label-md" placeholder="Buscar barbeiro..." type="text">
+</div>
+<button class="flex items-center gap-2 bg-[#121213] border border-outline-variant/30 px-5 py-3 rounded-lg text-on-surface hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+<span class="font-label-md text-label-md">Filtros</span>
+</button>
+</div>
+</div>
+<!-- Filter Tags (Bento Style Sub-row) -->
+<div class="flex gap-3 mt-8 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 rounded-full font-label-sm text-label-sm whitespace-nowrap">Todos</button>
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 px-4 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant transition-colors whitespace-nowrap">Corte Moderno</button>
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 px-4 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant transition-colors whitespace-nowrap">Barboterapia</button>
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 px-4 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant transition-colors whitespace-nowrap">Visagismo</button>
+<button class="bg-surface-container hover:bg-surface-container-high border border-outline-variant/10 px-4 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant transition-colors whitespace-nowrap">Coloração</button>
+</div>
+</header>
+<!-- Barber Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Barber Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-fashion portrait of a professional male barber with a well-groomed beard and stylish hair, wearing a premium leather apron in a moody, high-end barbershop environment. The lighting is dramatic and focused, highlighting facial features and the texture of the hair. The background is a dark, sophisticated graphite color with subtle gold accents, reflecting a luxury grooming-as-a-service aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSxuuPsOYpyMaI5690gjWcCqfn-odTkdSa_SwMCcVicx1iZfqYWzBgtePZMty9HeMC89oxpMj1_BFbJYbP2qehZ8H4WWXabzTny0KKZKAwFvxO4wHKfD3VJ6wQRgWozbYL8Lwh8l4vez2irFGVNshIWHSZSiAdqtWlcMukfS433lUJAb_VxntrltrpTT8XEzTooOoujmuJuQgrrNHZL_evzO5HkBh5a-7gZMmTLkK3AHf9eKV5LJ-b">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">4.9</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Arthur Mendes</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Especialista em Visagismo</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">8 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Disponível hoje</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Barber Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="A high-contrast profile of a female master barber with tattooed arms, styling a client's hair with precision tools. The atmosphere is professional and exclusive, set against a dark architectural background with premium graphite surfaces and low-contrast golden lighting. The shot is crisp and detailed, emphasizing the craft and expertise of a high-end salon professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxpoMVIneQ68aSuDDX2mcTU5GXkmkEy3CTQJzm7of33ukm46glfKg0ak3r8ws5TC-B_4pZ3siCz7FMt0Mqdl5h4ZbctxuvkXVX7yVRQZJ7kiO1eEx4a632vcpqB0t7xxu8q9jKCbFO30Jlqu0EE7pXHUTAk_mPBm3J2slq7EY3QADuStVIfQUiaJXP1WZdlXlZuLtGcr4513ivF8BufDu2AsMDP_rTp9Lg9qL00ueiFsT7T5B_Nynn">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">5.0</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Elena Silva</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Mestre em Cortes Modernos</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">12 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Agenda lotada</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Barber Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young, stylish barber in a minimalist, modern studio. He is holding professional hair clippers and looking confidently at the camera. The background features sleek glass panels and dark slate tiles. The color palette is composed of rich blacks, muted golds, and charcoal greys, creating a sophisticated and professional mood typical of a luxury tech-driven barber service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-E9DUQl9jaPTQRenUToolLJKtzYYsT4ZRrqGSpE5-r6GrdrzaPJ8f8YjWldkZBaVKoFZuen8mZoWyAQaSmhFv7WlKRIYSWpgQKrxzV8bsj_wVx3EkMiCMyLmflR-jS8KMEhPC5bL9xgNiirbMI8phwdsknkzP6Oh4lrXmbBUsFMallGLXY94DsKpxJKJ-MqIAgIM65D_eUvUqMzdevLVoKvqVyDOmbLY-_-0E4LYI6ZRUm9X5BAnB">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">4.8</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Lucas Ferreira</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Expert Barboterapia</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">5 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Disponível hoje</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Barber Card 4 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="A veteran barber with silver hair and a meticulously trimmed beard, working in a heritage-inspired luxury barbershop. The lighting highlights the fine details of professional shears and vintage barbering chairs. The environment is dark and premium, utilizing a color palette of deep blacks and polished gold hardware, conveying a sense of total confidence and technological sophistication in grooming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmHEX2d0_lIekLkbsyfMbfDeiLLPXAPBldNEsItoXlEYjl06faE0Tk6AuUt9dVbwL2_4JYp4qFCw1oeNAiEFQwdR06CVOQtcsNgV1WZMm7AefXxDw0W6OxZ1fpccRtusz-doiOmf7xD_OJaOBogeBY4zFGOlRTLavwkUpH2vOoPB3d1kMgGS2yZo_stsh0ViEKD-IveCfOaPZsRE9dpJCHGYTVt7p675Ouc16WuBzzuADq4THfi2z">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">4.9</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Ricardo Santos</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Cortes Clássicos &amp; Barba</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">15 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Próxima: Amanhã</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Barber Card 5 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="A modern urban barber with a contemporary look, specializing in fades and technical designs. He is shown in a high-tech studio with LED accents and graphite furniture. The visual style is minimal and corporate-modern, featuring a sophisticated palette of black and white with vibrant gold highlights, emphasizing a technologically advanced approach to luxury hair styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrmLwpaXBGsqQL_FYH4JRB9QrPkeTsJoKRSkBgRppdAb0XJ3JhVZqX3WMpUQ_AxiJ7hhI3EqeiIOOxCKh7WSiw84ZyMNT98jIyi8Cj7-K68b3kG4QDcV7PLwdhl27StQNncBK523y4wDNfi3wKly5ga-Jx8kDvKXplCuqzrksy1Rj2LrE0jGhr8CivpD1lzDCT4xw2hV6V0ES5eXMOtjSfQc0Rfm4flbiZNEOKX0eeybjQaRvkYL5">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">4.7</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Bruno Lima</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Expert em Degradê &amp; Fade</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">4 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Disponível hoje</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Barber Card 6 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative h-72 w-full">
+<img class="w-full h-full object-cover" data-alt="An expert stylist specializing in men's hair coloring and creative styling. The artist is captured in a high-key lighting setup within a minimalist gallery-like studio. The mood is serene yet technologically advanced, with a palette of deep blacks and pristine whites, punctuated by gold-tinted borders and subtle glassmorphic elements, perfect for a prestige heritage brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACEJ-h5mwLBBWoQ9-9NbReV4pLvrxQzOYWs0HC6DmRvhp4EH3mFfFBpyzwrIUwdFE2M0bmqqZVGKxpS8eEA755Sb2NFEdRy5E3UbvAC-fA7UurXE-ZlMyymDrh-35hsh7yiBjRh6Q4bCofU2Xu06EBgTQ90NlHpSW7neOZoi6F_cs2v2pBPK1COposnDSwcdinkqrEzrB3Lj_YeRMrg56luxVL4IKFBnCJ9x6M6za_Fv-B4VGtLyQ_">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-white font-label-md text-label-md">4.9</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="font-headline-md text-headline-md text-white group-hover:text-primary transition-colors">Gustavo Neves</h3>
+<p class="font-label-md text-label-md text-primary uppercase tracking-wider">Coloração &amp; Design</p>
+</div>
+<div class="flex items-center gap-4 mb-6 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm">10 anos exp.</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="font-label-sm text-label-sm">Amanhã</span>
+</div>
+</div>
+<button class="w-full bg-transparent border border-outline-variant text-white py-3 rounded-lg font-label-md text-label-md hover:bg-primary hover:text-black hover:border-primary transition-all duration-300 inner-glow flex items-center justify-center gap-2 group/btn">
+                        Ver Agenda
+                        <span class="material-symbols-outlined text-[18px] translate-x-0 group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Load More / Pagination -->
+<div class="mt-16 flex justify-center">
+<button class="flex items-center gap-3 bg-[#1A1A1B] border border-outline-variant/30 text-on-surface px-8 py-4 rounded-xl font-label-md text-label-md hover:border-primary transition-all">
+                Carregar mais profissionais
+                <span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-primary mb-6">BarberPro</div>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant leading-relaxed">
+                    Elevando a experiência de grooming através da tecnologia e exclusividade. 
+                </p>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md mb-6 uppercase tracking-widest">Navegação</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Serviços</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Barbeiros</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Unidades</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md mb-6 uppercase tracking-widest">Suporte</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Contato</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Privacidade</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md mb-6 uppercase tracking-widest">Siga-nos</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary border border-outline-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary border border-outline-variant/10 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/5 py-8 text-center">
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">© 2024 BarberPro SaaS. Todos os direitos reservados.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.96)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Simple Search Simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.glass-card').forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const specialty = card.querySelector('p').textContent.toLowerCase();
+                if(name.includes(query) || specialty.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

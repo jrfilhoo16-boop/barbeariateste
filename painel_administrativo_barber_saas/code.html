@@ -1,0 +1,572 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BarberPro Admin | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-highest": "#323536",
+                    "surface-bright": "#373a3b",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#111415",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#303031",
+                    "on-secondary-fixed": "#1b1b1c",
+                    "surface-variant": "#323536",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#cecece",
+                    "surface-container": "#1d2021",
+                    "primary-container": "#d4af37",
+                    "on-background": "#e1e3e4",
+                    "inverse-surface": "#e1e3e4",
+                    "error-container": "#93000a",
+                    "primary": "#f2ca50",
+                    "surface-container-lowest": "#0c0f10",
+                    "secondary-fixed": "#e5e2e3",
+                    "surface-tint": "#e9c349",
+                    "on-error": "#690005",
+                    "inverse-on-surface": "#2e3132",
+                    "surface-dim": "#111415",
+                    "tertiary-container": "#b3b3b3",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-container-high": "#282a2b",
+                    "background": "#111415",
+                    "outline": "#99907c",
+                    "on-secondary-fixed-variant": "#474647",
+                    "on-tertiary-container": "#454545",
+                    "on-primary-container": "#554300",
+                    "on-surface": "#e1e3e4",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-tertiary": "#303030",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#bab8b9",
+                    "outline-variant": "#4d4635",
+                    "surface-container-low": "#191c1d",
+                    "secondary-container": "#49494a",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "secondary": "#c8c6c7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "sidebar-width": "280px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Geist"],
+                    "body-md": ["Poppins"],
+                    "display-lg": ["Poppins"],
+                    "body-lg": ["Poppins"],
+                    "label-md": ["Geist"],
+                    "headline-md": ["Poppins"],
+                    "headline-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #111415;
+            color: #e1e3e4;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active-indicator {
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 24px;
+            background-color: #f2ca50;
+        }
+        .glass-panel {
+            background: rgba(25, 28, 29, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(77, 70, 53, 0.2);
+        }
+        .kpi-card-glow {
+            box-shadow: 0 0 40px -10px rgba(242, 202, 80, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111415;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #323536;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary/30 selection:text-primary">
+<!-- Layout Container -->
+<div class="flex min-h-screen">
+<!-- SideNavBar Component (Admin Focused) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant/10 flex flex-col py-8 z-50">
+<div class="px-6 mb-10 flex flex-col gap-1">
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">BarberPro</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-60">Premium Management</p>
+</div>
+<nav class="flex-1 flex flex-col overflow-y-auto custom-scrollbar">
+<!-- Primary Navigation -->
+<div class="flex flex-col mb-8">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-4 text-primary bg-primary/5 border-l-2 border-primary px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-md text-label-md">Agendamentos</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Clientes</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="content_cut">content_cut</span>
+<span class="font-label-md text-label-md">Serviços</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-label-md text-label-md">Equipe</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-6 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Configurações</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-6 mb-8">
+<button class="w-full bg-primary text-on-primary-fixed font-label-md text-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
+                        Novo Agendamento
+                    </button>
+</div>
+</nav>
+<!-- Footer Tabs -->
+<div class="mt-auto border-t border-outline-variant/5 pt-4">
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-md text-label-md">Suporte</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sair</span>
+</a>
+<div class="px-6 mt-4 flex items-center gap-3 py-2">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-detail portrait of a professional male salon manager in his 30s with a perfectly groomed beard, wearing a crisp black shirt. The background is a blurred luxury barbershop interior with warm golden lighting and graphite architectural details, reflecting a high-end corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDul_etqxEdf6ndEirMxgZ8vNFoi3CXfGyzNdCJGD0_WhvqTK24D6uXxcK3ABwT0b_bzw8Hp2yMERIFLrea1aORKLwvHZcYhydTqJH_mDoPRpMJbAObbDcewOZojLajVip3pTHfOUaJHNIeSdqOXdzff7Fu_0rwxX4PsjvbGp7oRf9T7CbW_o7PTUj5lADEcYp53u0Eei859r6ho0NozYglRuDkiIlZE3Tc3l-8wRSsQ1nBskFCfpi">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Alex Santos</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Gerente Master</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex-1 min-h-screen flex flex-col bg-surface">
+<!-- Top Header -->
+<header class="sticky top-0 z-40 h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 px-margin-desktop flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">Visão Geral</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bem-vindo de volta, Alex. Aqui está o resumo de hoje.</p>
+</div>
+<div class="flex items-center gap-6">
+<!-- Notification Bell -->
+<button class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<!-- Date Picker Placeholder -->
+<div class="flex items-center gap-3 bg-surface-container px-4 py-2 rounded-lg border border-outline-variant/10 cursor-pointer hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md text-on-surface">14 de Setembro, 2024</span>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-margin-desktop space-y-gutter max-w-container-max mx-auto w-full">
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- KPI Card 1 -->
+<div class="glass-panel kpi-card-glow p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest font-bold">Agendamentos</span>
+<span class="material-symbols-outlined text-primary/40" data-icon="event_available">event_available</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">42</span>
+<div class="flex items-center gap-1 text-green-400 mt-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span class="font-label-sm text-label-sm">+12% hoje</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all"></div>
+</div>
+<!-- KPI Card 2 -->
+<div class="glass-panel kpi-card-glow p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest font-bold">Clientes Ativos</span>
+<span class="material-symbols-outlined text-primary/40" data-icon="groups">groups</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">1,248</span>
+<div class="flex items-center gap-1 text-green-400 mt-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span class="font-label-sm text-label-sm">+8 novos</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all"></div>
+</div>
+<!-- KPI Card 3 -->
+<div class="glass-panel kpi-card-glow p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest font-bold">Faturamento</span>
+<span class="material-symbols-outlined text-primary/40" data-icon="payments">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">R$ 8.420</span>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="remove">remove</span>
+<span class="font-label-sm text-label-sm">Estável</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all"></div>
+</div>
+<!-- KPI Card 4 -->
+<div class="glass-panel kpi-card-glow p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-label-sm text-label-sm uppercase tracking-widest font-bold">Taxa de Ocupação</span>
+<span class="material-symbols-outlined text-primary/40" data-icon="percent">percent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">88%</span>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="stars">stars</span>
+<span class="font-label-sm text-label-sm">Meta batida</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all"></div>
+</div>
+</div>
+<!-- Bento Main Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Chart Section -->
+<div class="col-span-12 lg:col-span-8 glass-panel rounded-xl p-8">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md font-semibold">Tendências de Agendamento</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Volume de atendimentos vs Período anterior</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md border border-primary/20">Semanal</button>
+<button class="px-3 py-1.5 rounded-lg bg-transparent text-on-surface-variant font-label-md text-label-md hover:text-on-surface">Mensal</button>
+</div>
+</div>
+<!-- Simulated Chart Visualization -->
+<div class="relative h-[300px] w-full flex items-end justify-between px-2 gap-4">
+<div class="absolute inset-0 flex flex-col justify-between opacity-5">
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+<div class="border-t border-on-surface w-full"></div>
+</div>
+<!-- Bar 1 -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm h-[40%] transition-all group-hover:bg-primary/40"></div>
+<div class="w-full bg-primary rounded-t-sm h-[60%] -mt-1 group-hover:opacity-80"></div>
+<span class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Seg</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm h-[30%] transition-all"></div>
+<div class="w-full bg-primary rounded-t-sm h-[80%] -mt-1"></div>
+<span class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Ter</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm h-[50%] transition-all"></div>
+<div class="w-full bg-primary rounded-t-sm h-[45%] -mt-1"></div>
+<span class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Qua</span>
+</div>
+<!-- Bar 4 (Active Today) -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/30 rounded-t-sm h-[20%] transition-all"></div>
+<div class="w-full bg-primary rounded-t-sm h-[90%] -mt-1 relative">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">92%</div>
+</div>
+<span class="mt-4 font-label-sm text-label-sm text-primary font-bold">Qui</span>
+</div>
+<!-- Bar 5 -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%] transition-all"></div>
+<div class="w-full bg-primary rounded-t-sm h-[70%] -mt-1"></div>
+<span class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Sex</span>
+</div>
+<!-- Bar 6 -->
+<div class="flex-1 group relative flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm h-[15%] transition-all"></div>
+<div class="w-full bg-primary rounded-t-sm h-[95%] -mt-1"></div>
+<span class="mt-4 font-label-sm text-label-sm text-on-surface-variant">Sab</span>
+</div>
+</div>
+</div>
+<!-- Mini Calendar / Top Services -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<!-- Mini Calendar Panel -->
+<div class="glass-panel rounded-xl p-6 flex-1">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider">Agenda</h4>
+<div class="flex gap-1">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="chevron_left">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<span class="text-[10px] font-bold text-on-surface-variant">D</span>
+<span class="text-[10px] font-bold text-on-surface-variant">S</span>
+<span class="text-[10px] font-bold text-on-surface-variant">T</span>
+<span class="text-[10px] font-bold text-on-surface-variant">Q</span>
+<span class="text-[10px] font-bold text-on-surface-variant">Q</span>
+<span class="text-[10px] font-bold text-on-surface-variant">S</span>
+<span class="text-[10px] font-bold text-on-surface-variant">S</span>
+<span class="text-label-sm p-1.5 opacity-30">28</span>
+<span class="text-label-sm p-1.5 opacity-30">29</span>
+<span class="text-label-sm p-1.5 opacity-30">30</span>
+<span class="text-label-sm p-1.5">1</span>
+<span class="text-label-sm p-1.5">2</span>
+<span class="text-label-sm p-1.5">3</span>
+<span class="text-label-sm p-1.5">4</span>
+<span class="text-label-sm p-1.5">5</span>
+<span class="text-label-sm p-1.5">6</span>
+<span class="text-label-sm p-1.5">7</span>
+<span class="text-label-sm p-1.5">8</span>
+<span class="text-label-sm p-1.5">9</span>
+<span class="text-label-sm p-1.5">10</span>
+<span class="text-label-sm p-1.5">11</span>
+<span class="text-label-sm p-1.5">12</span>
+<span class="text-label-sm p-1.5">13</span>
+<span class="text-label-sm p-1.5 bg-primary text-on-primary-fixed rounded-full font-bold">14</span>
+<span class="text-label-sm p-1.5">15</span>
+<span class="text-label-sm p-1.5">16</span>
+<span class="text-label-sm p-1.5">17</span>
+<span class="text-label-sm p-1.5">18</span>
+</div>
+<div class="mt-6 space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg border-l-2 border-primary">
+<div class="text-[10px] text-on-surface-variant font-bold leading-tight">14:00<br>14:45</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm font-bold">Corte &amp; Barba</p>
+<p class="text-[10px] text-on-surface-variant">Ricardo L.</p>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Top Services -->
+<div class="glass-panel rounded-xl p-6">
+<h4 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider mb-6">Top Serviços</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-label-md text-label-md">Corte Degradê</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">42%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/40"></div>
+<span class="font-label-md text-label-md">Barba Profissional</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/20"></div>
+<span class="font-label-md text-label-md">Selagem Térmica</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">15%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Appointments Table -->
+<div class="col-span-12 glass-panel rounded-xl overflow-hidden">
+<div class="p-8 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md font-semibold">Agendamentos Recentes</h3>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline">
+                                Ver todos <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container/50 border-b border-outline-variant/5">
+<tr>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Cliente</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Serviço</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Barbeiro</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Horário</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Valor</th>
+<th class="px-8 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary border border-primary/20">MC</div>
+<span class="font-label-md text-label-md">Marcos Cavalcanti</span>
+</div>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Corte + Barba</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Gabriel Silva</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">14:00 - Hoje</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] font-bold uppercase">Confirmado</span>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">R$ 120,00</td>
+<td class="px-8 py-4 text-right">
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary border border-primary/20">AB</div>
+<span class="font-label-md text-label-md">André Barbosa</span>
+</div>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Corte Degradê</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Felipe M.</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">15:30 - Hoje</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase">Aguardando</span>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">R$ 80,00</td>
+<td class="px-8 py-4 text-right">
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="px-8 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary border border-primary/20">JS</div>
+<span class="font-label-md text-label-md">Juliano Soares</span>
+</div>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Barba &amp; Toalha</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">Gabriel Silva</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">16:00 - Hoje</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-error/10 text-error text-[10px] font-bold uppercase">Cancelado</span>
+</td>
+<td class="px-8 py-4 font-label-sm text-label-sm">R$ 60,00</td>
+<td class="px-8 py-4 text-right">
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Component -->
+<footer class="mt-auto w-full bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<h1 class="font-headline-md text-headline-md text-primary font-bold mb-4">BarberPro</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">
+                            © 2024 BarberPro SaaS.<br>Todos os direitos reservados.
+                        </p>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface mb-4 font-bold">Plataforma</h5>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Painel Geral</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Gestão Financeira</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Marketing Tools</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface mb-4 font-bold">Empresa</h5>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Privacidade</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Trabalhe Conosco</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface mb-4 font-bold">Contato</h5>
+<ul class="space-y-2">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Suporte 24/7</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Documentação API</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Comunidade</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</main>
+</div>
+<!-- Floating Action Button (Only on Dashboard) -->
+<button class="fixed bottom-10 right-10 w-14 h-14 bg-primary text-on-primary-fixed rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-[28px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="absolute right-16 bg-on-surface text-surface px-3 py-1 rounded text-[12px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Ajuda Rápida</span>
+</button>
+<script>
+        // Micro-interactions and simple effects
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

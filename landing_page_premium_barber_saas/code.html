@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BarberPro | Premium Grooming Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-card {
+            background: rgba(26, 26, 27, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 45, 46, 0.5);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .inner-stroke {
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-primary-fixed": "#241a00",
+                "surface-container-highest": "#323536",
+                "surface-bright": "#373a3b",
+                "on-tertiary-fixed-variant": "#474747",
+                "on-primary": "#3c2f00",
+                "primary-fixed": "#ffe088",
+                "surface": "#111415",
+                "on-error-container": "#ffdad6",
+                "on-secondary": "#303031",
+                "on-secondary-fixed": "#1b1b1c",
+                "surface-variant": "#323536",
+                "inverse-primary": "#735c00",
+                "tertiary": "#cecece",
+                "surface-container": "#1d2021",
+                "primary-container": "#d4af37",
+                "on-background": "#e1e3e4",
+                "inverse-surface": "#e1e3e4",
+                "error-container": "#93000a",
+                "primary": "#f2ca50",
+                "surface-container-lowest": "#0c0f10",
+                "secondary-fixed": "#e5e2e3",
+                "surface-tint": "#e9c349",
+                "on-error": "#690005",
+                "inverse-on-surface": "#2e3132",
+                "surface-dim": "#111415",
+                "tertiary-container": "#b3b3b3",
+                "primary-fixed-dim": "#e9c349",
+                "surface-container-high": "#282a2b",
+                "background": "#111415",
+                "outline": "#99907c",
+                "on-secondary-fixed-variant": "#474647",
+                "on-tertiary-container": "#454545",
+                "on-primary-container": "#554300",
+                "on-surface": "#e1e3e4",
+                "on-surface-variant": "#d0c5af",
+                "on-primary-fixed-variant": "#574500",
+                "on-tertiary": "#303030",
+                "secondary-fixed-dim": "#c8c6c7",
+                "tertiary-fixed": "#e2e2e2",
+                "on-secondary-container": "#bab8b9",
+                "outline-variant": "#4d4635",
+                "surface-container-low": "#191c1d",
+                "secondary-container": "#49494a",
+                "error": "#ffb4ab",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "on-tertiary-fixed": "#1b1b1b",
+                "secondary": "#c8c6c7"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "base": "8px",
+                "gutter": "24px",
+                "margin-desktop": "40px",
+                "sidebar-width": "280px",
+                "container-max": "1440px"
+              },
+              "fontFamily": {
+                "label-sm": ["Geist"],
+                "body-md": ["Poppins"],
+                "display-lg": ["Poppins"],
+                "body-lg": ["Poppins"],
+                "label-md": ["Geist"],
+                "headline-md": ["Poppins"],
+                "headline-lg": ["Poppins"]
+              },
+              "fontSize": {
+                "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">BarberPro</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Serviços</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Barbeiros</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Unidades</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Preços</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md px-6 py-2 text-on-surface hover:opacity-80 transition-all active:scale-95">Entrar</button>
+<button class="font-label-md text-label-md px-6 py-3 bg-primary text-on-primary-fixed font-bold rounded hover:opacity-90 transition-all active:scale-95 inner-stroke">Agendar Agora</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[90vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A cinematic, low-angle wide shot of a high-end luxury barbershop interior at night. The space features dark walnut wood, antique leather barber chairs, and warm spotlighting reflecting off vintage glass bottles and gold-trimmed mirrors. Atmospheric smoke or vapor catches the light in the background. The overall aesthetic is dark, moody, and prestigious, matching a premium charcoal and gold color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt_6GTwUB9tD69rzGxXy1Ho1bCzvgwoOIU_6VzrQOijaXcWa_w-mPUIjO8v7Ao5CwHe29bk5XO2CWpNWgAtDlBgNL8H6bRimYG8dk4-g8BY6M6PLuhxjUt6mXPbsSLBwOAhBAGapsT9GAgLfrOeTEHjBGT5lguSFsBOrP8n7SlwqHyoOfY5wGSAKbr1gW32Aqd7Q5SZqTiroop6tvvlzNSA9gS69ydjgDHKHUEqHCjjXgE3UPlynSd">
+</div>
+<div class="relative z-20 px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-2xl space-y-8">
+<div class="space-y-4">
+<span class="inline-block px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-label-md text-label-md uppercase tracking-widest">Premium Grooming Experience</span>
+<h1 class="font-display-lg text-display-lg text-white leading-tight">A Arte de Barbear Levada ao <span class="text-primary italic">Próximo Nível.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Gestão inteligente para barbearias exclusivas. Transforme sua rotina com agendamentos automáticos e experiência de luxo para seus clientes.</p>
+</div>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="font-label-md text-label-md px-10 py-5 bg-primary text-on-primary-fixed font-bold rounded-lg hover:opacity-90 transition-all active:scale-95 inner-stroke gold-glow">
+                            Agendar Agora
+                        </button>
+<button class="font-label-md text-label-md px-10 py-5 border border-outline-variant text-white font-medium rounded-lg hover:bg-white/5 transition-all active:scale-95">
+                            Conhecer Serviços
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="relative z-30 -mt-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter glass-card p-10 rounded-xl">
+<div class="text-center space-y-2 border-r border-outline-variant/20 last:border-0">
+<h3 class="font-display-lg text-headline-lg text-primary">15k+</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-tighter">Clientes Satisfeitos</p>
+</div>
+<div class="text-center space-y-2 border-r border-outline-variant/20 last:border-0">
+<h3 class="font-display-lg text-headline-lg text-primary">12 Anos</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-tighter">De Experiência</p>
+</div>
+<div class="text-center space-y-2 last:border-0">
+<h3 class="font-display-lg text-headline-lg text-primary">4.9/5</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-tighter">Avaliação Premium</p>
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="py-32 px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-20 space-y-4">
+<h2 class="font-headline-lg text-headline-lg text-white">Por que o BarberPro?</h2>
+<div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Benefit 1 -->
+<div class="group p-8 rounded-xl bg-surface-container-low border border-outline-variant/10 hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</div>
+<h4 class="font-headline-md text-body-lg text-white mb-3">Agendamento 24/7</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Sua barbearia nunca fecha para novos agendamentos. Total liberdade para seus clientes.</p>
+</div>
+<!-- Benefit 2 -->
+<div class="group p-8 rounded-xl bg-surface-container-low border border-outline-variant/10 hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<h4 class="font-headline-md text-body-lg text-white mb-3">Lembretes Smart</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Reduza faltas em até 80% com notificações automáticas via WhatsApp e E-mail.</p>
+</div>
+<!-- Benefit 3 -->
+<div class="group p-8 rounded-xl bg-surface-container-low border border-outline-variant/10 hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<h4 class="font-headline-md text-body-lg text-white mb-3">Dashboard VIP</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Métricas detalhadas sobre faturamento, recorrência e performance da equipe.</p>
+</div>
+<!-- Benefit 4 -->
+<div class="group p-8 rounded-xl bg-surface-container-low border border-outline-variant/10 hover:border-primary/50 transition-all duration-300">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<h4 class="font-headline-md text-body-lg text-white mb-3">Pagamento Ágil</h4>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Check-out integrado e link de pagamento para serviços premium antecipados.</p>
+</div>
+</div>
+</section>
+<!-- Gallery Grid -->
+<section class="py-20 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<span class="text-primary font-label-md text-label-md uppercase tracking-widest">The Portfolio</span>
+<h2 class="font-headline-lg text-headline-lg text-white">Cortes Assinados</h2>
+</div>
+<button class="text-primary font-label-md text-label-md flex items-center gap-2 hover:gap-3 transition-all">
+                        Ver Galeria Completa <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+<div class="md:col-span-2 md:row-span-2 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A high-contrast studio portrait of a modern sharp fade haircut with a perfectly groomed beard. The lighting is dramatic, highlighting the texture of the hair and the precision of the lines. Dark background with gold lighting accents. Professional grooming photography in a luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMBz4J9Nkk4vL7hz8-nuw9jqqDHIsylrhY8ASmAVI6lk2BXAKbdZ56Jto8k09tzRUVA_UDmEj-gzgQPzEGxGr1EeIQ9iFm2yMk5uBrU8UCCofwnHAMWMDvhzw5HSAM05f8_c8VQGCMpVXPN02--eWThg09_bUX7kC2tZRGAz5aVKdBlsim9DduXPuxNILQB85RsmFRILWS6nIlx1PPIurL2Ok68YYWXW61BtWUH_YfJKh5auxT9Pd">
+</div>
+<div class="rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Close up of a barber's hands using traditional straight razor on a client's neck. Steam and warm lighting create a luxurious atmosphere. Macro photography focusing on the chrome steel of the razor and the gold-trimmed barber chair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbMzyqldp8Pw4L5IF1zDsjjfJIXqdOMah0SBxfhXU7tyEskhNTD5fdb9TQXK76FLAwEwnDWGwzJJA7kRZ_XKXOZc_3Ce0TM_hd7JlnUkXFrRVeD4a0y-oE1b0NIX7_-1KYSe1EztR5wKu-Qok9bUOcS851ltbQwx9IPYDPl2SJYhwLyWex-HuZbBHytsmvHbykaW3PogSI1qN1I74il1R6LjgK4FiTreOLdUmxYvwt6YZupK9ehiNY">
+</div>
+<div class="rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Classic pompadour hairstyle with a soft matte finish. Professional male model posing in a charcoal grey suit. Minimalist studio setting with soft directional lighting. Sophisticated and elegant grooming style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsiqV5FUxPDsPNFvp7_kFDb5IywshRYM-zo87OLrUDJlO4WIAFLdXYr-ZCkakBCu5fNncPWSA4O5aSqffHcqqxD7IVCygEYGtDPjAFv0nuSGEgrwH0iEv0d_0Mc4yHYWtLzX4gcDe9ZxpE7s6X8NlEKdwyM4UVYMrX1Y5B3EPws1zlNiJUW4Fv7w1aBJ7MMw6cVhHOMod_IoBy5GNUkZB6YwK7LA5GAtSVaSGX5aMj-rW0lwbWy8xY">
+</div>
+<div class="md:col-span-2 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Wide shot of three premium barber chairs in a row within a modern, minimalist salon. Each chair is occupied by a client receiving a service. The floor is polished concrete and the walls are dark brick with gold-lettered signage. Luxury salon interior photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAhZeuC4Pa-I1eODcHLyubJ0p52qU72UQvpAZutk66keUHOR4nz5sUwCVRhPM7RqoItRE_wTi21ICRiUw03_ZfY3Uyc2jjd-sDREwpDJT35XOExrJ0oso-NtuS0uF5As1_qFVIOVazti6T9zgDTVkWa7HFlCQzKEghbvuxeY_rQ9ziqlBf4Qxg677T8GwWqnNk11V7y58bT_KM8qoOsPhVsixvB9orpX_Xx7zDpBDKmXMjlruGoq_e">
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Slider -->
+<section class="py-32 px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-white">Vozes da Experiência</h2>
+</div>
+<div class="flex gap-gutter overflow-x-auto no-scrollbar pb-8 snap-x">
+<!-- Testimonial 1 -->
+<div class="min-w-[350px] md:min-w-[450px] snap-center glass-card p-10 rounded-2xl space-y-6">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic leading-relaxed">"O BarberPro mudou completamente a forma como gerencio meus horários. Meus clientes adoram a facilidade de agendar e eu adoro a organização."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a stylish man in his 30s with a well-maintained beard and undercut. He is wearing a dark linen shirt. Minimalist light-grey background. High-end portrait photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOxLAR3NpX-6wOaLv5m2eoscGHK8YaTXeP3pOZmXswFjlc8DqUoVxpp9W1a719-I2VfitjDcZwiX54Ix1vzjm6ryT3F8MHgsC3Bj7gVzNuYZ2gHJWkRXryu7ws6th2H3ETy0-o-xucFwLachIBM2YZaUzALSyZI5tIPdNmdO9kwlAVdflJLm0KDp3-_dDL0FJ_y1I-IDW0VsAGynAKgiX23mNIsED9YYTZjFjnpazwiMhaTqJISiUJ">
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-white">Ricardo Santos</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Proprietário, RS Grooming</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="min-w-[350px] md:min-w-[450px] snap-center glass-card p-10 rounded-2xl space-y-6">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic leading-relaxed">"Interface impecável e suporte extraordinário. Realmente eleva o status da barbearia perante os clientes mais exigentes."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="Portrait of an elegant gentleman with silver hair and a sharp suit. He is smiling slightly. The background is a blurred high-end lounge. Luxury lifestyle photography, sophisticated mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Qag5bFEqgmaIsA2gzPph2DyEXDsM5GPp7kiFNAQFmc9KqDWmlDvZVBo6SjlBSr4lCXFx1D8kakYVA5yI-CbLHXp8veGEWliOEAgD3i6HUQfi5sHvxmX9uL2FHxuT8uhZTWtL0xBjnj-4aRJQ1HpFpkvFkZMSiKj5As8eAGSvytPJpYxD6ql2I_ZNKWtugCigxRV-UksJJd_LXWfe4o0O1GQPh8lK4J2t6L2avf_mD44Y6Bn_ueJz">
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-white">Arthur Meirelles</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Cliente Executivo</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="min-w-[350px] md:min-w-[450px] snap-center glass-card p-10 rounded-2xl space-y-6">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic leading-relaxed">"A automação de pagamentos e lembretes por WhatsApp economizou pelo menos 10 horas semanais da minha equipe. Vale cada centavo."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="Portrait of a modern female salon manager with a professional and welcoming expression. She has short stylish hair and is wearing a gold necklace. Sophisticated studio lighting against a dark textured wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX4tsaX2G7g2kmi9bAI7B2hxAdRcvZew2Hqr7SKWNfHmT2Q3BC88gC6JElKSyipMuShYodhKvx_gM7n_sSi8HixGw3z_kj0MZrkA6-5cDEIXR5ULAhjNgGS-16IJCKREXHAu2LPpiLPJUcoZy3QWzTLyaejRBS_t5DrYQGxpcn1L5wQTN_tCz_TkorKW-Onc5FLdrhH8kfezvr1jnaVia2f6-5UZtfytdJVySj9eLgnSsnTP8JXvR_">
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-white">Juliana Ferraz</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Gestora, Urban Blade</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto text-center">
+<div class="glass-card p-16 rounded-3xl space-y-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-white max-w-3xl mx-auto">Pronto para elevar o nível da sua Barbearia?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">Comece hoje sua jornada rumo à excelência na gestão e atendimento premium.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="w-full md:w-auto font-label-md text-label-md px-12 py-5 bg-primary text-on-primary-fixed font-bold rounded-lg hover:opacity-90 transition-all active:scale-95 inner-stroke gold-glow">
+                        Agendar Agora
+                    </button>
+<button class="w-full md:w-auto font-label-md text-label-md px-12 py-5 border border-outline-variant text-white font-medium rounded-lg hover:bg-white/5 transition-all">
+                        Falar com Especialista
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="space-y-6">
+<span class="font-headline-md text-headline-md text-primary">BarberPro</span>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant leading-relaxed">A plataforma definitiva para barbearias que buscam excelência, tecnologia e exclusividade no atendimento aos seus clientes.</p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</a>
+<a class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md text-white font-bold uppercase tracking-widest">Produto</h4>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Dashboard</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Agendamentos</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Pagamentos</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Equipe</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md text-white font-bold uppercase tracking-widest">Empresa</h4>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Privacidade</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Contato</a></li>
+<li><a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Trabalhe Conosco</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-md text-label-md text-white font-bold uppercase tracking-widest">Newsletter</h4>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">Assine para receber novidades e dicas de gestão.</p>
+<div class="flex gap-2">
+<input class="bg-surface-container-low border border-outline-variant/30 rounded px-4 py-2 text-label-sm focus:outline-none focus:border-primary w-full text-white" placeholder="Seu melhor e-mail" type="email">
+<button class="bg-primary text-on-primary-fixed p-2 rounded hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-outline-variant/10 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant opacity-60">© 2024 BarberPro SaaS. Todos os direitos reservados.</p>
+<div class="flex gap-8">
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">language</span> Português (BR)</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">Security Certified</span>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth reveal animations for scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Testimonial slider interaction
+        const slider = document.querySelector('.snap-x');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body></html>

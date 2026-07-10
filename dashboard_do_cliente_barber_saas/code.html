@@ -1,0 +1,411 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BarberPro | Dashboard do Cliente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 45, 46, 1);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .sidebar-active-indicator {
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 24px;
+            background-color: #f2ca50;
+        }
+        body {
+            background-color: #000000;
+            color: #e1e3e4;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-primary-fixed": "#241a00",
+                "surface-container-highest": "#323536",
+                "surface-bright": "#373a3b",
+                "on-tertiary-fixed-variant": "#474747",
+                "on-primary": "#3c2f00",
+                "primary-fixed": "#ffe088",
+                "surface": "#111415",
+                "on-error-container": "#ffdad6",
+                "on-secondary": "#303031",
+                "on-secondary-fixed": "#1b1b1c",
+                "surface-variant": "#323536",
+                "inverse-primary": "#735c00",
+                "tertiary": "#cecece",
+                "surface-container": "#1d2021",
+                "primary-container": "#d4af37",
+                "on-background": "#e1e3e4",
+                "inverse-surface": "#e1e3e4",
+                "error-container": "#93000a",
+                "primary": "#f2ca50",
+                "surface-container-lowest": "#0c0f10",
+                "secondary-fixed": "#e5e2e3",
+                "surface-tint": "#e9c349",
+                "on-error": "#690005",
+                "inverse-on-surface": "#2e3132",
+                "surface-dim": "#111415",
+                "tertiary-container": "#b3b3b3",
+                "primary-fixed-dim": "#e9c349",
+                "surface-container-high": "#282a2b",
+                "background": "#111415",
+                "outline": "#99907c",
+                "on-secondary-fixed-variant": "#474647",
+                "on-tertiary-container": "#454545",
+                "on-primary-container": "#554300",
+                "on-surface": "#e1e3e4",
+                "on-surface-variant": "#d0c5af",
+                "on-primary-fixed-variant": "#574500",
+                "on-tertiary": "#303030",
+                "secondary-fixed-dim": "#c8c6c7",
+                "tertiary-fixed": "#e2e2e2",
+                "on-secondary-container": "#bab8b9",
+                "outline-variant": "#4d4635",
+                "surface-container-low": "#191c1d",
+                "secondary-fixed-dim": "#c8c6c7",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "on-tertiary-fixed": "#1b1b1b",
+                "secondary": "#c8c6c7"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "base": "8px",
+                "gutter": "24px",
+                "margin-desktop": "40px",
+                "sidebar-width": "280px",
+                "container-max": "1440px"
+              },
+              "fontFamily": {
+                "label-sm": ["Geist"],
+                "body-md": ["Poppins"],
+                "display-lg": ["Poppins"],
+                "body-lg": ["Poppins"],
+                "label-md": ["Geist"],
+                "headline-md": ["Poppins"],
+                "headline-lg": ["Poppins"]
+              },
+              "fontSize": {
+                "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="overflow-x-hidden">
+<!-- Sidebar Wrapper -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant/10 z-40 hidden md:flex flex-col py-8">
+<div class="px-8 mb-12">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">BarberPro</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Premium Management</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-4 text-primary bg-primary/5 border-l-2 border-primary px-6 py-3 transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md">Agendamentos</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<span class="font-label-md text-label-md">Serviços</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-label-md text-label-md">Equipe</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-on-surface px-6 py-3 hover:bg-surface-container-high transition-colors group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configurações</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-highest/20 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a stylish modern man with a groomed beard and classic haircut, lit by warm golden studio lights against a deep dark grey background, emphasizing luxury and grooming excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARzAL1Kl_QW76E_DvihA9gLjASoiSTUR0iolGJ7nu-2Dz3BdpOzZ_6Mm68UBij0s0_Ew5O2RXW38tWkIea1PDCwobanWbljDo_uc0JGlFyWM-erR3_U_8nmeHiniDdM-Edp2M78mJ9WrNGUXyF5MDLwdxKDlLvn2_0BXAqqz_WOA7QRrcLikm0s5d-AxfHQkMIQ9lZ4vv-RNvrLmZhJZ1ZMa99urbCb_6_bqRsPvx_YEtpxlTLQQ1K">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Ricardo Silva</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Cliente VIP</p>
+</div>
+</div>
+<button class="flex items-center gap-4 text-on-surface-variant hover:text-error w-full px-4 py-2 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sair</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-sidebar-width min-h-screen flex flex-col">
+<!-- Top Header -->
+<header class="h-20 flex items-center justify-between px-margin-desktop sticky top-0 bg-surface/80 backdrop-blur-md z-30 border-b border-outline-variant/10">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Dashboard</h2>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-outline-variant/20"></div>
+<button class="font-label-md text-label-md text-on-surface flex items-center gap-2 hover:opacity-80 transition-all">
+<span>Menu</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 p-margin-desktop max-w-container-max">
+<!-- Welcome Section -->
+<section class="mb-12">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Olá, Ricardo!</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Bem-vindo de volta ao BarberPro. Sinta-se em casa e agende seu próximo estilo.</p>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Próximo Horário Featured Card -->
+<div class="lg:col-span-8">
+<div class="glass-card rounded-xl overflow-hidden relative group border border-outline-variant/20 hover:border-primary/40 transition-all duration-300">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="p-8 relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div>
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm mb-4 inline-block uppercase tracking-wider">Confirmado</span>
+<h4 class="font-headline-lg text-headline-lg text-on-surface mb-2">Próximo Corte</h4>
+<div class="flex items-center gap-4 text-on-surface-variant mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-body-md text-body-md">15 Out, 2024</span>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/20 pl-4">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<span class="font-body-md text-body-md">14:30</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a professional male barber with tattoos and a groomed beard, wearing a black apron in a high-end luxury barbershop with leather chairs and warm amber lighting. Dark, cinematic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBidCwXqF7MrObDK-4CHxJx_SVA0_K7tE7IQS8ls6UEJ50d16PZOe6qg6_pdRUarOtoT-DD5QPiE-SDqhtZWWYWnnzOZGwxlDQEIYBlpLeOXaBhFdi-GhfMujW8_Laq0rV1h_pvYUcOVZaVIqHnHyx7EnKAhtig2OywtYF5vH3ftjQ_g2kP0U6_ujbRfPWgkx5o2huAPj1fVFDYgv8X_6fxva4AAU58MpKqCXkCho6WMP3scVElv2MU">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Barbeiro: Marcus Vini</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Corte Degrade + Barba</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary text-on-primary-fixed font-label-md text-label-md px-8 py-4 rounded-lg font-bold hover:scale-[1.02] active:scale-95 transition-all gold-glow">
+                                    Ver Detalhes
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action / CTA -->
+<div class="lg:col-span-4 flex">
+<button class="group w-full rounded-xl bg-surface-container-high border border-outline-variant/20 hover:border-primary transition-all flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] transition-colors"></div>
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center mb-6 gold-glow group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-fixed text-3xl">add</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Novo Agendamento</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Reserve seu horário em segundos com seu barbeiro favorito.</p>
+</button>
+</div>
+<!-- Summary Grid -->
+<div class="lg:col-span-4">
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Último Barbeiro</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">Gabriel Torres</p>
+<p class="font-label-sm text-label-sm text-primary">Unidade Jardins</p>
+</div>
+</div>
+<div class="lg:col-span-4">
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Total Agendamentos</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">24 Visitas</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Desde Janeiro 2024</p>
+</div>
+</div>
+<div class="lg:col-span-4">
+<div class="glass-card p-6 rounded-xl border border-outline-variant/10 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined">loyalty</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Status Fidelidade</span>
+</div>
+<p class="font-headline-md text-headline-md text-primary">Cliente Black</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Próximo corte grátis em: 2 visitas</p>
+</div>
+</div>
+<!-- Recent Activity List -->
+<div class="lg:col-span-12 mt-4">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-headline-md text-headline-md text-on-surface">Atividade Recente</h4>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Ver Histórico Completo</a>
+</div>
+<div class="glass-card rounded-xl border border-outline-variant/10 overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest/30 border-b border-outline-variant/10">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Serviço</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Profissional</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Data &amp; Hora</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="px-6 py-5">
+<p class="font-body-md text-body-md text-on-surface">Corte Tesoura + Barboterapia</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Headshot of a modern professional barber with a clean undercut, wearing a white button down shirt in a bright, high-end grooming studio. 8k resolution, photorealistic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdj-qZUIzZWty2rLArWmbgb7AX_0xo-ONRoqJAG1XcFpE18rF-WZu_jlJ_1rAzfVbmknpVhUa6pPbZoSMHa4yoQWr2SE-hwbIeOzpH25bX1DPwNEt27GYmIZtgcHALHVfLsYrRzKDjv0lJFopNWnQyz5ATONTi4bsN8i4hFInMsJykeC2FCx1Y6YJOjlYEBcRrkG8e6qtV4auv96duPZMfrnRGHAN7D5ohch9699SNXXatjzIFAn50">
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">André Lucas</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-body-md text-body-md text-on-surface">22 Set, 2024 — 10:00</p>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-on-tertiary-fixed-variant/20 text-tertiary font-label-sm text-label-sm">Concluído</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="px-6 py-5">
+<p class="font-body-md text-body-md text-on-surface">Corte Clássico</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female barber with short styled hair and elegant jewelry in a premium dark themed salon. She is wearing professional black attire. Dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAabPcTM6XzMwpkOWqMVklwGKCKHjnvsk077nFCq1RrF9Cq61ETBPEXeWdIySxkxSZQJm0lv3YKVKYBdhVF5IJllIeM44pj3wYcZlJcMFrHZtVIL6ePMVH4vw5JBGPZ-_78sQ4Ea4wdJHUxJNlaVZnUsLQS2X3p8bx-5N8pL2iyYMCiSKUnsHZ0NR1kvKuDSW0aKRn7kTv2CVuRUlc4WsN79QohutFzIuoZKxTwQ4IXun8W080VXbba">
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">Carla Mendes</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-body-md text-body-md text-on-surface">08 Set, 2024 — 16:30</p>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-on-tertiary-fixed-variant/20 text-tertiary font-label-sm text-label-sm">Concluído</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto py-8 px-margin-desktop border-t border-outline-variant/10 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant">© 2024 BarberPro SaaS. Todos os direitos reservados.</p>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Privacidade</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="font-label-sm text-label-sm text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">Contato</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Mobile Nav Bar (Visible only on small screens) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-low border-t border-outline-variant/10 z-50 flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] uppercase font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] uppercase">Agenda</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<span class="text-[10px] uppercase">Cortes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] uppercase">Perfil</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.classList.add('scale-95');
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.classList.remove('scale-95');
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.classList.remove('scale-95');
+            });
+        });
+
+        // Simple parallax effect on the featured card
+        const glassCard = document.querySelector('.glass-card');
+        if(glassCard) {
+            glassCard.addEventListener('mousemove', (e) => {
+                const rect = glassCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
+                
+                glassCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            glassCard.addEventListener('mouseleave', () => {
+                glassCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        }
+    </script>
+</body></html>

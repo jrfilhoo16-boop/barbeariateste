@@ -1,0 +1,534 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Agendar Agora | BarberPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-highest": "#323536",
+                    "surface-bright": "#373a3b",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-primary": "#3c2f00",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#111415",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#303031",
+                    "on-secondary-fixed": "#1b1b1c",
+                    "surface-variant": "#323536",
+                    "inverse-primary": "#735c00",
+                    "tertiary": "#cecece",
+                    "surface-container": "#1d2021",
+                    "primary-container": "#d4af37",
+                    "on-background": "#e1e3e4",
+                    "inverse-surface": "#e1e3e4",
+                    "error-container": "#93000a",
+                    "primary": "#f2ca50",
+                    "surface-container-lowest": "#0c0f10",
+                    "secondary-fixed": "#e5e2e3",
+                    "surface-tint": "#e9c349",
+                    "on-error": "#690005",
+                    "inverse-on-surface": "#2e3132",
+                    "surface-dim": "#111415",
+                    "tertiary-container": "#b3b3b3",
+                    "primary-fixed-dim": "#e9c349",
+                    "surface-container-high": "#282a2b",
+                    "background": "#111415",
+                    "outline": "#99907c",
+                    "on-secondary-fixed-variant": "#474647",
+                    "on-tertiary-container": "#454545",
+                    "on-primary-container": "#554300",
+                    "on-surface": "#e1e3e4",
+                    "on-surface-variant": "#d0c5af",
+                    "on-primary-fixed-variant": "#574500",
+                    "on-tertiary": "#303030",
+                    "secondary-fixed-dim": "#c8c6c7",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-secondary-container": "#bab8b9",
+                    "outline-variant": "#4d4635",
+                    "surface-container-low": "#191c1d",
+                    "secondary-container": "#49494a",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "secondary": "#c8c6c7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "sidebar-width": "280px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Geist"],
+                    "body-md": ["Poppins"],
+                    "display-lg": ["Poppins"],
+                    "body-lg": ["Poppins"],
+                    "label-md": ["Geist"],
+                    "headline-md": ["Poppins"],
+                    "headline-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #111415;
+            color: #e1e3e4;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(45, 45, 46, 0.5);
+        }
+        .step-active {
+            color: #f2ca50;
+        }
+        .step-completed {
+            color: #f2ca50;
+        }
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar (Shared Component Context) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-outline-variant/10 shadow-sm">
+<nav class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">BarberPro</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Serviços</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Barbeiros</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Unidades</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Preços</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md px-4 py-2">Entrar</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-bold hover:opacity-80 transition-all scale-95 active:scale-98">Agendar Agora</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-20 px-4 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left: Stepper & Selection Canvas -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Horizontal Stepper -->
+<div class="glass-panel p-6 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-3 step-active" id="step-nav-1">
+<div class="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center font-bold text-label-md">1</div>
+<span class="hidden md:block font-label-md">Barbeiro</span>
+</div>
+<div class="h-px bg-outline-variant/30 flex-1 mx-4"></div>
+<div class="flex items-center gap-3 text-on-surface-variant" id="step-nav-2">
+<div class="w-8 h-8 rounded-full border-2 border-outline-variant/30 flex items-center justify-center font-bold text-label-md">2</div>
+<span class="hidden md:block font-label-md">Serviço</span>
+</div>
+<div class="h-px bg-outline-variant/30 flex-1 mx-4"></div>
+<div class="flex items-center gap-3 text-on-surface-variant" id="step-nav-3">
+<div class="w-8 h-8 rounded-full border-2 border-outline-variant/30 flex items-center justify-center font-bold text-label-md">3</div>
+<span class="hidden md:block font-label-md">Horário</span>
+</div>
+<div class="h-px bg-outline-variant/30 flex-1 mx-4"></div>
+<div class="flex items-center gap-3 text-on-surface-variant" id="step-nav-4">
+<div class="w-8 h-8 rounded-full border-2 border-outline-variant/30 flex items-center justify-center font-bold text-label-md">4</div>
+<span class="hidden md:block font-label-md">Confirmar</span>
+</div>
+</div>
+<!-- Step Content: Barber Selection (Step 1) -->
+<div class="space-y-6" id="step-content-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Selecione o Barbeiro</h2>
+<span class="text-label-md text-on-surface-variant">Profissionais disponíveis</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Barber Card -->
+<div class="glass-panel p-4 rounded-xl cursor-pointer border-transparent hover:border-primary/50 transition-all group active:scale-95" onclick="nextStep(2)">
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional male barber with a well-groomed beard, wearing a high-end black apron, working in a luxury barbershop with warm gold lighting and graphite walls. He is smiling warmly, presenting a premium and exclusive grooming experience. The aesthetic is modern, corporate, and high-fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQIkmqXPWnCo2sLFDzMqW8lIsGJtSMqpo614z1rjEMj8-89r8whzBic7Rb2Vvx-94R14LmMCXk56m6Hq3OL0tZIF4p5FGBQjFhAZxfq5beuQsca4Zt2oskwJF9Wuy_AABzBURTYSB-NpsaN3N0M4Kz2GKt05FB6Z7K7Y9wEQ2EsA2nTeqkID_OewaEI2eIJFwqaVgy3B-8Pp8cA0U1bQ32csxHxxcDZbi6mHAOy5Tk2XHVhqNcgIIg">
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Marco Aurélio</h3>
+<p class="text-label-md text-on-surface-variant">Master Barber • 12 anos exp.</p>
+<div class="flex items-center mt-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-label-md">4.9 (120 avaliações)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Barber Card -->
+<div class="glass-panel p-4 rounded-xl cursor-pointer border-transparent hover:border-primary/50 transition-all group active:scale-95" onclick="nextStep(2)">
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A stylish female barber with tattooed arms and professional attire, standing in a sleek, minimalist hair salon with graphite surfaces and gold accents. She holds professional scissors, embodying confidence and craftsmanship. The lighting is sophisticated, creating a high-contrast premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByMAjC3hVEYaYV2k4NKPVQblynkenGtwAZCybYlKiGH573ytvy2yvoeGEW2Joc0anzW74XmJoucZK0zZxq1cY-mUdJhk08PcevfpfvQ7ESqt0A4EESw4YNtaADKS74I2EKXmh2rY4vh_V4P61wP67Z1vf5SQ3-AX2dMlYcEBJ7lgvlldVK9M-poeOdmrfHwClFrbFEmlCsoWWz88OVb8RgaO3fhRcInZCZuk2-U9jal6fGf9BzBGmD">
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Ana Clara</h3>
+<p class="text-label-md text-on-surface-variant">Senior Stylist • 8 anos exp.</p>
+<div class="flex items-center mt-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-label-md">4.8 (85 avaliações)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Barber Card -->
+<div class="glass-panel p-4 rounded-xl cursor-pointer border-transparent hover:border-primary/50 transition-all group active:scale-95" onclick="nextStep(2)">
+<div class="flex gap-4">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A young, trendy male barber in a graphite professional uniform, working in a modern urban barbershop with industrial glass elements and gold detailing. He is focused and skilled, surrounded by premium grooming tools. The atmosphere is exclusive and technologically sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACjaI_EcuErTlHcjV13Jgfti7WL5cvvfNy3YlCaHkLnGfiYZ2_PYcohlA22yN5j3Eb7qm8uLCBhYg1yDOQHEJ_r1saHu9fhooGIMWMctPT-Z861P4txpzlGG2rAyafB8K1JCcg7PwXgqM2_bk2-Np9RUrxS9N6l7pv8nWq1NZVWHT0Tv2JhMHMfg-i0MaL2vNTP9nT_2ciT9UvZ-6Dnl5JFrSfK0qMZeK61X7-iOOMXPNlswdalN70">
+</div>
+<div class="flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Vitor Hugo</h3>
+<p class="text-label-md text-on-surface-variant">Fade Specialist • 5 anos exp.</p>
+<div class="flex items-center mt-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-label-md">5.0 (42 avaliações)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step Content: Service Selection (Step 2) -->
+<div class="hidden space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" id="step-content-2">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="nextStep(1)">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Escolha o Serviço</h2>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Service Item -->
+<div class="glass-panel p-6 rounded-xl flex items-center justify-between cursor-pointer hover:border-primary transition-all active:scale-[0.99]" onclick="nextStep(3)">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]">content_cut</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Corte Premium</h4>
+<p class="text-label-md text-on-surface-variant">Corte com tesoura e máquina + Lavagem especial</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-primary font-bold text-headline-md">R$ 85</div>
+<div class="text-label-sm text-on-surface-variant">45 min</div>
+</div>
+</div>
+<!-- Service Item -->
+<div class="glass-panel p-6 rounded-xl flex items-center justify-between cursor-pointer hover:border-primary transition-all active:scale-[0.99]" onclick="nextStep(3)">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]">face</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Barba Executiva</h4>
+<p class="text-label-md text-on-surface-variant">Modelagem com toalha quente e óleos essenciais</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-primary font-bold text-headline-md">R$ 60</div>
+<div class="text-label-sm text-on-surface-variant">30 min</div>
+</div>
+</div>
+<!-- Service Item -->
+<div class="glass-panel p-6 rounded-xl border-primary bg-primary/5 flex items-center justify-between cursor-pointer transition-all active:scale-[0.99]" onclick="nextStep(3)">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[28px]">stars</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Combo BarberPro</h4>
+<p class="text-label-md text-on-surface-variant">Corte + Barba + Massagem capilar relaxante</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-primary font-bold text-headline-md">R$ 130</div>
+<div class="text-label-sm text-on-surface-variant">75 min</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step Content: Date & Time (Step 3) -->
+<div class="hidden space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" id="step-content-3">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="nextStep(2)">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Data e Horário</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Calendar Component -->
+<div class="glass-panel p-6 rounded-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-label-md text-on-surface">Novembro 2024</h3>
+<div class="flex gap-2">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center mb-2">
+<div class="text-label-sm text-on-surface-variant">D</div>
+<div class="text-label-sm text-on-surface-variant">S</div>
+<div class="text-label-sm text-on-surface-variant">T</div>
+<div class="text-label-sm text-on-surface-variant">Q</div>
+<div class="text-label-sm text-on-surface-variant">Q</div>
+<div class="text-label-sm text-on-surface-variant">S</div>
+<div class="text-label-sm text-on-surface-variant">S</div>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<!-- Calendar Grid Mockup -->
+<div class="p-2 text-label-md text-on-surface-variant/40">27</div>
+<div class="p-2 text-label-md text-on-surface-variant/40">28</div>
+<div class="p-2 text-label-md text-on-surface-variant/40">29</div>
+<div class="p-2 text-label-md text-on-surface-variant/40">30</div>
+<div class="p-2 text-label-md text-on-surface-variant/40">31</div>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">01</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">02</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">03</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">04</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">05</button>
+<button class="p-2 text-label-md bg-primary text-on-primary-fixed font-bold rounded-lg shadow-[0_0_15px_rgba(242,202,80,0.3)]">06</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">07</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">08</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">09</button>
+<div class="p-2 text-label-md text-on-surface-variant/40">10</div>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">11</button>
+<button class="p-2 text-label-md bg-surface-container-high rounded-lg hover:bg-primary/20 transition-all">12</button>
+</div>
+</div>
+<!-- Time Slot Selection -->
+<div class="glass-panel p-6 rounded-xl space-y-6">
+<h3 class="font-label-md text-on-surface">Horários Disponíveis</h3>
+<div class="grid grid-cols-3 gap-3">
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">09:00</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">09:45</button>
+<button class="py-3 px-2 rounded-lg bg-surface-container-highest text-on-surface-variant/40 cursor-not-allowed text-label-md" disabled="">10:30</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">11:15</button>
+<button class="py-3 px-2 rounded-lg border border-primary bg-primary/10 text-primary font-bold text-label-md">14:00</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">14:45</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">15:30</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">16:15</button>
+<button class="py-3 px-2 rounded-lg border border-outline-variant/30 text-label-md hover:border-primary hover:text-primary transition-all">17:00</button>
+</div>
+<button class="w-full bg-primary text-on-primary-fixed py-4 rounded-xl font-bold text-body-md hover:opacity-90 transition-all shadow-[0_4px_20px_rgba(242,202,80,0.2)]" onclick="nextStep(4)">Continuar</button>
+</div>
+</div>
+</div>
+<!-- Step Content: Confirmation (Step 4) -->
+<div class="hidden space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" id="step-content-4">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="nextStep(3)">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Revisar e Confirmar</h2>
+</div>
+<div class="glass-panel p-8 rounded-xl space-y-8 relative overflow-hidden">
+<!-- Abstract Background Decoration -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-6">
+<div>
+<label class="text-label-sm text-primary uppercase tracking-widest block mb-2">Seu Agendamento</label>
+<h3 class="font-headline-md text-headline-md text-on-surface">Combo BarberPro</h3>
+<p class="text-body-md text-on-surface-variant">Corte + Barba + Massagem Capilar</p>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg bg-surface-container-high">
+<img class="w-16 h-16 rounded-full object-cover" data-alt="A professional male barber with a well-groomed beard, wearing a high-end black apron, working in a luxury barbershop with warm gold lighting and graphite walls. Close-up portrait focusing on his confident expression and the premium service environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFIQp9aUfO_nZFOs9QS57nWhJqz15-yF-cm9pKJHhYSu3yiHnrYwFbCXp3SXnbbRm7WkXhnHUFOod8_7sm-bY0gA63dEeHn-4bi0qO294M0Yu87SPtx8X0K6h7PmgOJDyYqs3jxBkp20vR6daoIU3OiaiuJKW11gJQB_9hU2BumYCzLD3PCVVPc_41CZBuxS0cC49bMEZLGzlnfw8o6GU_9gLIEUaVgFg7LRQKaVP8vaq4uJl7UF5d">
+<div>
+<div class="text-label-sm text-on-surface-variant">Profissional</div>
+<div class="font-bold text-on-surface">Marco Aurélio</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<div class="text-label-sm text-on-surface-variant">Data</div>
+<div class="font-bold text-on-surface">06 de Novembro, 2024</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<div class="text-label-sm text-on-surface-variant">Horário</div>
+<div class="font-bold text-on-surface">14:00 - 15:15 (75 min)</div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-between items-end">
+<div>
+<div class="text-label-sm text-on-surface-variant">Total a pagar</div>
+<div class="text-display-lg text-primary">R$ 130</div>
+</div>
+<button class="bg-primary text-on-primary-fixed px-10 py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(242,202,80,0.3)]" onclick="window.location.reload()">Confirmar Agora</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Summary Sidebar -->
+<div class="lg:col-span-4">
+<div class="sticky top-32 glass-panel p-6 rounded-xl space-y-6">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant/10 pb-4">Resumo</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<span class="text-label-md text-on-surface-variant">Profissional</span>
+<span class="text-on-surface font-medium" id="summary-barber">Não selecionado</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-label-md text-on-surface-variant">Serviço</span>
+<span class="text-on-surface font-medium" id="summary-service">Não selecionado</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-label-md text-on-surface-variant">Data &amp; Hora</span>
+<span class="text-on-surface font-medium" id="summary-time">Selecione no passo 3</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-md text-on-surface-variant">Subtotal</span>
+<span class="text-on-surface">R$ 130,00</span>
+</div>
+<div class="flex justify-between items-center mb-6">
+<span class="text-label-md text-on-surface-variant">Taxa de Reserva</span>
+<span class="text-on-surface">Grátis</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-headline-md text-on-surface">Total</span>
+<span class="font-bold text-headline-md text-primary">R$ 130,00</span>
+</div>
+</div>
+<div class="bg-primary/5 p-4 rounded-lg border border-primary/20">
+<div class="flex gap-3 text-primary">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<p class="text-label-sm leading-relaxed">Pague diretamente na barbearia após o serviço. Cancelamento grátis até 2 horas antes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component Context) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-primary mb-4">BarberPro</div>
+<p class="text-on-tertiary-fixed-variant font-label-sm text-label-sm">Experiência premium de cuidados masculinos com a tecnologia que você merece.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-on-surface font-bold mb-2">Plataforma</h4>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Serviços</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Barbeiros</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Unidades</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-on-surface font-bold mb-2">Suporte</h4>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Contato</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Termos de Uso</a>
+<a class="text-on-tertiary-fixed-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Privacidade</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="text-on-surface font-bold mb-2">Redes Sociais</h4>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-primary">chat_bubble</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-6 border-t border-outline-variant/10 text-center text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+            © 2024 BarberPro SaaS. Todos os direitos reservados.
+        </div>
+</footer>
+<script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+            // Hide all contents
+            document.querySelectorAll('[id^="step-content-"]').forEach(el => el.classList.add('hidden'));
+            
+            // Show target content
+            document.getElementById(`step-content-${step}`).classList.remove('hidden');
+
+            // Update Nav indicators
+            updateStepperUI(step);
+
+            // Update logic for summary
+            if(step === 2) {
+                document.getElementById('summary-barber').innerText = "Marco Aurélio";
+                document.getElementById('summary-barber').classList.add('text-primary');
+            }
+            if(step === 3) {
+                document.getElementById('summary-service').innerText = "Combo BarberPro";
+                document.getElementById('summary-service').classList.add('text-primary');
+            }
+            if(step === 4) {
+                document.getElementById('summary-time').innerText = "06 Nov, 14:00";
+                document.getElementById('summary-time').classList.add('text-primary');
+            }
+
+            currentStep = step;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateStepperUI(step) {
+            for(let i = 1; i <= 4; i++) {
+                const nav = document.getElementById(`step-nav-${i}`);
+                const circle = nav.querySelector('div');
+                
+                if (i < step) {
+                    nav.className = "flex items-center gap-3 text-primary";
+                    circle.className = "w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center font-bold text-label-md bg-primary/10";
+                    circle.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span>';
+                } else if (i === step) {
+                    nav.className = "flex items-center gap-3 text-primary";
+                    circle.className = "w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center font-bold text-label-md";
+                    circle.innerHTML = i;
+                } else {
+                    nav.className = "flex items-center gap-3 text-on-surface-variant";
+                    circle.className = "w-8 h-8 rounded-full border-2 border-outline-variant/30 flex items-center justify-center font-bold text-label-md";
+                    circle.innerHTML = i;
+                }
+            }
+        }
+    </script>
+</body></html>
